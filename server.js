@@ -10,6 +10,8 @@ server.use(express.json())
 
 server.use('/api/posts', postRoutes)
 
+server.use('/api/users', userRoutes)
+
 server.get('/', logger , (req, res) => {
   res.send(`<h2>Let's write some middleware!</h2>`);
 });

@@ -25,6 +25,7 @@ router.get('/', (req, res) => {
 
     postsDataBase.getById(req.params.id)
     .then(result => {
+    
         if(result){
           req.result = result.id
           next();
