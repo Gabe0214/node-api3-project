@@ -60,8 +60,26 @@ router.delete('/:id' ,validId, (req, res) => {
    })
 });
 
-router.put('/:id', (req, res) => {
+function textValidate( req, res, next) {
+  const { text } = req.body
+   if(!text) {
+     res.status(401).json({error: "Please insert text"})
+   } else {
+     next();
+   }
+
+}
+
+
+router.put('/:id', validId, textValidate, (req, res) => {
   // do your magic!
+    postsDataBase.update(req.result, req.body)
+    .then( result => {
+    res.status(200).json(result)
+    })
+    .catch(error => {
+      res.status(500).json({errorMessage: "Something went wrong with database"})
+    })
 });
 
 // custom middleware
