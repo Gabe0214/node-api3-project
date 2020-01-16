@@ -119,7 +119,7 @@ function validateUser(req, res, next) {
 
 function validatePost(req, res, next) {
   // do your magic!
- 
+ const { text, user_id } = req.body
 
   if(!req.body) {
     res.status(401).json({error: "Please provide a user id and text property"})
